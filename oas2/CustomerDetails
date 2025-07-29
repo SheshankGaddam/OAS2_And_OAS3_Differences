@@ -1,0 +1,73 @@
+swagger: '2.0'
+info:
+  title: CustomerDetails
+  version: 1.0.0
+  description: CustomerDetails
+basePath: /openapi2
+paths:
+  /getCustomerById:
+    get:
+      operationId: getGetCustomerById1
+      responses:
+        '200':
+          description: The operation was successful.
+          schema:
+            $ref: '#/definitions/customer'
+      produces:
+        - application/json
+      description: Retrieve getCustomerById
+      parameters:
+        - name: UserId
+          in: query
+          type: number
+        - name: Organization
+          in: header
+          type: string          
+  /getCustomerById/{UserId}:
+    get:
+      operationId: getGetCustomerById2
+      responses:
+        '200':
+          description: The operation was successful.
+          schema:
+            $ref: '#/definitions/customer'
+      produces:
+        - application/json
+      description: Retrieve getCustomerById
+      parameters:
+        - name: UserId
+          in: path
+          type: number
+          required: true
+  /createCustomer:
+    post:
+      operationId: postCreateCustomer
+      responses:
+        '200':
+          description: The customer created successfully
+          schema:
+            type: string
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      description: Insert a createCustomer
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/customer'
+          description: The request body for the operation
+          required: true
+definitions:
+  customer:
+    type: object
+    properties:
+      Id:
+        type: string
+      Name:
+        type: string
+      Age:
+        type: string
+      Address:
+        type: string
