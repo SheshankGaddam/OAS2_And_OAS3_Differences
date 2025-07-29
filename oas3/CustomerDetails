@@ -1,0 +1,76 @@
+openapi: 3.0.1
+info:
+  title: CustomerDetails
+  description: CustomerDetails
+  version: 1.0.0
+servers:
+- url: /openapi3
+paths:
+  /getCustomerById:
+    get:
+      description: Retrieve getCustomerById
+      operationId: getGetCustomerById1
+      parameters:
+      - name: UserId
+        in: query
+        schema:
+          type: number
+      - name: Organization
+        in: header
+        schema:
+          type: string
+      responses:
+        200:
+          description: The operation was successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer'
+  /getCustomerById/{UserId}:
+    get:
+      description: Retrieve getCustomerById
+      operationId: getGetCustomerById2
+      parameters:
+      - name: UserId
+        in: path
+        required: true
+        schema:
+          type: number
+      responses:
+        200:
+          description: The operation was successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/customer'
+  /createCustomer:
+    post:
+      description: Insert a createCustomer
+      operationId: postCreateCustomer
+      requestBody:
+        description: The request body for the operation
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/customer'
+        required: true
+      responses:
+        200:
+          description: The customer created successfully
+          content:
+            application/json:
+              schema:
+                type: string
+components:
+  schemas:
+    customer:
+      type: object
+      properties:
+        Id:
+          type: string
+        Name:
+          type: string
+        Age:
+          type: string
+        Address:
+          type: string
