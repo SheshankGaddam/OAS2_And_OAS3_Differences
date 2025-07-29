@@ -17,28 +17,52 @@ This repository contains Swagger definitions for both **OpenAPI Specification 2.
 
 ## 📊 Key Differences Between OAS2 and OAS3
 
-| Feature                      | OAS2 (Swagger 2.0)                                | OAS3 (OpenAPI 3.0)                                |
-|-----------------------------|---------------------------------------------------|---------------------------------------------------|
-| **Specification Version**   | `swagger: '2.0'`                                  | `openapi: 3.0.1`                                  |
-| **Base Path**               | `basePath` used                                   | Replaced by `servers` object                     |
-| **Request Body**            | Defined as a parameter in `in: body`              | Defined using `requestBody` object               |
-| **Content Type**            | `consumes` and `produces`                         | Defined under `content` with media types         |
-| **Components**              | `definitions`, `parameters`, `responses`          | Unified under `components`                       |
-| **Parameter Location**      | `in: body`, `in: query`, `in: header`, etc.       | Same, but `in: body` replaced by `requestBody`   |
-| **Multiple Examples**       | Not natively supported                            | Supported using `examples` object                |
-| **Callbacks & Links**       | Not supported                                     | Supported                                         |
+| Feature                     | OAS2 (Swagger 2.0)                                | OAS3 (OpenAPI 3.0)                                |
+|----------------------------|---------------------------------------------------|---------------------------------------------------|
+| **Specification Version**  | `swagger: '2.0'`                                  | `openapi: 3.0.x`                                  |
+| **Base URL**               | `host`, `basePath`, `schemes`                     | `servers` array                                   |
+| **Request Body**           | Defined as a parameter with `in: body`            | Defined using `requestBody` object                |
+| **Content Negotiation**    | `consumes` and `produces`                         | `content` object with media types                 |
+| **Reusable Components**    | `definitions`, `parameters`, `responses`          | Unified under `components`                        |
+| **Parameter Types**        | `in: query`, `in: path`, `in: header`, `in: body` | Same, but `in: body` replaced by `requestBody`    |
+| **Multiple Examples**      | Not natively supported                            | Supported using `examples` object                 |
+| **Callbacks & Links**      | Not supported                                     | Supported                                         |
+| **Security Definitions**   | `securityDefinitions`                             | `securitySchemes` under `components`              |
+| **File Uploads**           | `type: file` in formData                          | `type: string`, `format: binary` in requestBody   |
 
 ---
 
-## 🧪 Example: CustomerDetails API
+## 🧪 Swagger Example Explanation
 
-Both specifications define the following endpoints:
+### ✅ Common API: `CustomerDetails`
 
-- `GET /getCustomerById` (query param)
-- `GET /getCustomerById/{UserId}` (path param)
-- `POST /createCustomer` (request body)
+This API includes three endpoints:
 
-Each version demonstrates how these endpoints are modeled differently in OAS2 and OAS3.
+1. **GET /getCustomerById**  
+   - Accepts `UserId` as a query parameter and `Organization` as a header.
+   - Returns a `customer` object.
+
+2. **GET /getCustomerById/{UserId}**  
+   - Accepts `UserId` as a path parameter.
+   - Returns a `customer` object.
+
+3. **POST /createCustomer**  
+   - Accepts a `customer` object in the request body.
+   - Returns a success message.
+
+### 🔍 OAS2 Highlights
+
+- Uses `swagger: '2.0'`
+- Defines request body using `parameters` with `in: body`
+- Uses `definitions` for schema reuse
+- Specifies `consumes` and `produces` for content types
+
+### 🔍 OAS3 Highlights
+
+- Uses `openapi: 3.0.1`
+- Introduces `requestBody` for body payloads
+- Uses `components/schemas` for reusable models
+- Replaces `basePath` with `servers`
 
 ---
 
@@ -46,5 +70,4 @@ Each version demonstrates how these endpoints are modeled differently in OAS2 an
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/openapi-spec-swagger-examples.git
-   ```
+   git clone https://github.com/your-username/openapi-swagger-oas2-vs-oas3.git
