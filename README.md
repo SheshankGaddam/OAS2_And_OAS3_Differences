@@ -13,6 +13,7 @@ This repository contains Swagger definitions for both **OpenAPI Specification 2.
 - `oas3/customer-details-oas3.yaml`: Swagger file using OAS3
 - Key differences between OAS2 and OAS3
 
+
 ---
 
 ## 📊 Key Differences Between OAS2 and OAS3
